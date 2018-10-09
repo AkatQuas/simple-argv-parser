@@ -18,12 +18,16 @@ yarn add git+https://github.com/AkatQuas/simple-argv-parser
 # Supported Argv syntax
 
 ```bash
-node [js_file] --var1 value1 --var2=value2 -var3 value3 ------var4 value4
+node [js_file] --var1 value1 --var2=value2 --var3 -var4 value4 ------var5 value5
 ```
 
 Just like the usage of shell commands, and the variable name can be started with any number of hyphens ( at least one, for sure, otherwise it's regarded as a value). 
 
-**NOTE**: All the values are parsed as a ring.
+**NOTE**: All the values are parsed as string.
+
+**NOTE**: A variable without a value would be a boolean value, `true`.
+
+**NOTE**: A value without a variable name will throw an error.
 
 >  Weakness
 >
@@ -34,6 +38,7 @@ Just like the usage of shell commands, and the variable name can be started with
 >   ```
 >
 > No subcommand allowed!
+>
 
 # Usage
 
@@ -47,10 +52,11 @@ console.log(simpleArgvParser(process.argv.slice(2)));
 In the shell:
 
 ```bash
-node test.js -y 2018 -url http://cn.bing.com
+node test.js -y 2018 --open -url http://cn.bing.com
 
 {
     y: '2018',
+    open: true,
     url: 'http://cn.bing.com'
 }
 ```
