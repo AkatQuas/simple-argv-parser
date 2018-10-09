@@ -1,7 +1,7 @@
 
 # Simple Argv Parser
 
-For parsing argv from the command line. No dependencies!
+For parsing argv from the command line. Dependencies free!
 
 # Installation
 
@@ -21,9 +21,9 @@ yarn add git+https://github.com/AkatQuas/simple-argv-parser
 node [js_file] --var1 value1 --var2=value2 -var3 value3 ------var4 value4
 ```
 
-Just like the usage of shell commands, and the variable name can be started with any number of hyphens ( at least one, for sure). 
+Just like the usage of shell commands, and the variable name can be started with any number of hyphens ( at least one, for sure, otherwise it's regarded as a value). 
 
-**NOTE**: All the values are parsed as a string.
+**NOTE**: All the values are parsed as a ring.
 
 >  Weakness
 >
