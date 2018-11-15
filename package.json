@@ -6,5 +6,8 @@
     "index.js",
     "lib/*"
   ],
+  "scripts": {
+      "test": "node test/main.test.js"
+  },
   "license": "MIT"
 }

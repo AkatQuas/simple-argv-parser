@@ -18,7 +18,7 @@ yarn add git+https://github.com/AkatQuas/simple-argv-parser
 # Supported Argv syntax
 
 ```bash
-node [js_file] --var1 value1 --var2=value2 --var3 -var4 value4 ------var5 value5
+node [js_file] --var1 value1 --var2=value2 --var2=value22 --var3 -var4 value4 ------var5 value5
 ```
 
 Just like the usage of shell commands, and the variable name can be started with any number of hyphens ( at least one, for sure, otherwise it's regarded as a value). 
@@ -28,6 +28,8 @@ Just like the usage of shell commands, and the variable name can be started with
 **NOTE**: A variable without a value would be a boolean value, `true`.
 
 **NOTE**: A value without a variable name will throw an error.
+
+**NOTE**: Multiple values for same variable name will become an array, now we just accept `string` and `boolean`.
 
 >  Weakness
 >
@@ -40,10 +42,10 @@ Just like the usage of shell commands, and the variable name can be started with
 > No subcommand allowed!
 >
 
-# Usage
+# Test
 
 ```javascript
-// the script, named `test.js`
+// in the javascript, named `test.js`
 const simpleArgvParser = require('simple-argv-parser');
 
 console.log(simpleArgvParser(process.argv.slice(2)));
@@ -52,13 +54,20 @@ console.log(simpleArgvParser(process.argv.slice(2)));
 In the shell:
 
 ```bash
-node test.js -y 2018 --open -url http://cn.bing.com
+node test/index.test.js -y 2018 --open -url http://cn.bing.com -icon v1 -icon v2 -icon 
 
 {
     y: '2018',
     open: true,
-    url: 'http://cn.bing.com'
+    url: 'http://cn.bing.com',
+    icon: ['v1', 'v2', true]
 }
+```
+
+And run multiple [test](test/main.test.js):
+
+```bash
+npm run test
 ```
 
 # Requirements
