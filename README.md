@@ -23,7 +23,7 @@ node [js_file] --var1 value1 --var2=value2 --var2=value22 --var3 -var4 value4 --
 
 Just like the usage of shell commands, and the variable name can be started with any number of hyphens ( at least one, for sure, otherwise it's regarded as a value). 
 
-**NOTE**: All the values are parsed as string.
+**NOTE**: All the values are parsed as string. And the string `'false'` would be taken as the boolean `false`, string `'true'` for boolean `true`.
 
 **NOTE**: A variable without a value would be a boolean value, `true`.
 
@@ -54,14 +54,20 @@ console.log(simpleArgvParser(process.argv.slice(2)));
 In the shell:
 
 ```bash
-node test/index.test.js -y 2018 --open -url http://cn.bing.com -icon v1 -icon v2 -icon 
+# executing:
+node test/index.test.js -y 2018 --open --harmony=false --useNative=true
+# with results:
+{ y: '2018', open: true, harmony: false, useNative: true }
 
-{
-    y: '2018',
-    open: true,
-    url: 'http://cn.bing.com',
-    icon: ['v1', 'v2', true]
-}
+#executing:
+node test/index.test.js -y 2018 --open -url http://cn.bing.com -icon v1 -icon v2 -icon
+
+# with results:
+{ y: '2018',
+  open: true,
+  url: 'http://cn.bing.com',
+  icon: [ 'v1', 'v2', true ] }
+
 ```
 
 And run multiple [test](test/main.test.js):
